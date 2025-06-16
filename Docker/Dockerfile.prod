@@ -5,17 +5,49 @@ FROM althack/ros2:humble-base
 
 ENV DEBIAN_FRONTEND noninteractive
 
+# Install dependencies
+
 COPY ./dependencies /dep
+
+COPY ./commands /cmd
 
 RUN --mount=type=cache,target=/var/cache/apt apt update -y
 
-RUN --mount=type=cache,target=/var/cache/apt xargs apt -y install < /dep/packages.txt
+RUN --mount=type=cache,target=/var/cache/apt apt install gettext -y
+
+RUN --mount=type=cache,target=/var/cache/apt  cat '/app/dep/packages.txt' | envsubst | xargs apt -y install
+
+RUN apt install python3-colcon-common-extensions python3-rosdep python3-pip -y
+
+# Create workspace
 
 RUN mkdir -p /app
 
-RUN chmod -R a+x /app/cmd
+COPY  ./workspace /app
+
+WORKDIR /app
+
+# Install packages dependencies
+
+RUN rosdep init
+
+RUN rosdep update
+
+RUN pip3 install --upgrade pip 
+
+RUN rosdep install --from-paths /app --ignore-src  -r -y -q
+
+RUN find /app -name "dependencies.txt" -exec pip3 install -r {} \;
+
+# Compile all packages
+
+RUN colcon build  --build-base $BUILD_LOCATION --install-base $INSTALL_LOCATION
+
+# Copy entrypoint
 
 COPY ./entrypoints/entrypoint.prod.sh /entrypoint.sh
+
+RUN chmod +x /entrypoint.sh
 
 RUN apt install -y tini
 

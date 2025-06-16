@@ -10,7 +10,7 @@ services:
     privileged: true
     tty: true
     build:
-      dockerfile: ./Docker/Dockerfile
+      dockerfile: ./Docker/Dockerfile.prod
       context: .
     stop_signal: SIGINT
     stop_grace_period: 30m
