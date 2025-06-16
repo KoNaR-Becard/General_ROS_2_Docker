@@ -1,0 +1,11 @@
+FROM althack/ros2:humble-dev
+
+
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt update
+
+RUN apt install -y tini
+ENTRYPOINT ["/usr/bin/tini", "--"]
+
+CMD [ "/entrypoint.sh" ]

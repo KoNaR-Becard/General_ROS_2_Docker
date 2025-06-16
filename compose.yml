@@ -1,0 +1,30 @@
+version: '3.9'
+
+
+services:
+  robot:
+    container_name: beacard_prod
+    network_mode: host
+    image: beacard_prod
+
+    privileged: true
+    tty: true
+    build:
+      dockerfile: ./Docker/Dockerfile
+      context: .
+    stop_signal: SIGINT
+    stop_grace_period: 30m
+    env_file:
+      - ./env/prod
+    volumes:
+      - ./entrypoints/entrypoint.prod.sh:/entrypoint.sh:rwx
+      - ./workspace:/app/:rw
+      - /sys:/sys
+      - /etc/udev:/etc/udev
+      - /run/udev:/run/udev
+      - /run/dbus/:/run/dbus
+      - /dev:/dev
+
+    group_add:
+      - dialout
+      - 1001

@@ -1,0 +1,38 @@
+version: '3.9'
+
+
+services:
+
+  gazebo:
+    container_name: becard_dev
+    network_mode: host
+    image: becard_dev_ros
+
+    privileged: true
+    tty: true
+    build:
+      dockerfile: ./Docker/Dockerfile.dev
+      context: ./
+    stop_signal: SIGINT
+    stop_grace_period: 30m
+    env_file:
+      - ./env/dev
+    volumes:
+      - ./entrypoints/entrypoint.dev.sh:/entrypoint.sh:rwx
+      - ./commands/:/cmd
+      - ./dependencies/:/dep
+      - ./workspace:/app:rw
+      - /sys:/sys
+      - /etc/udev:/etc/udev
+      - /run/udev:/run/udev
+      - /run/dbus/:/run/dbus
+      - /dev:/dev
+
+    devices:
+      - "/dev/dri/:/dev/dri/"
+      - /dev/snd:/dev/snd
+
+    group_add:
+      - video
+      - dialout
+      - 1001

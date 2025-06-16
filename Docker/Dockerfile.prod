@@ -1,0 +1,24 @@
+FROM althack/ros2:humble-base
+
+# SHELL ["/bin/bash", "-c"]
+
+
+ENV DEBIAN_FRONTEND noninteractive
+
+COPY ./dependencies /dep
+
+RUN --mount=type=cache,target=/var/cache/apt apt update -y
+
+RUN --mount=type=cache,target=/var/cache/apt xargs apt -y install < /dep/packages.txt
+
+RUN mkdir -p /app
+
+RUN chmod -R a+x /app/cmd
+
+COPY ./entrypoints/entrypoint.prod.sh /entrypoint.sh
+
+RUN apt install -y tini
+
+ENTRYPOINT ["/usr/bin/tini", "--"]
+
+CMD [ "/entrypoint.sh" ]
