@@ -24,7 +24,7 @@ rm -R workspace/install
 
 elif [ "$arg" = "compile" ]; then
 
-docker compose -f compose_sim.yml exec gazebo /cmd/build_packages.sh camera_ros
+docker compose -f compose_sim.yml exec gazebo /cmd/build_packages.sh
 
 elif [ "$arg" = "purge" ]; then
 

@@ -7,6 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 ENV BUILD_LOCATION ./build
 ENV INSTALL_LOCATION ./install
+ENV ROS_DISTRO humble
 
 # Install dependencies
 
@@ -18,7 +19,11 @@ RUN --mount=type=cache,target=/var/cache/apt apt update -y
 
 RUN --mount=type=cache,target=/var/cache/apt apt install gettext -y
 
-RUN --mount=type=cache,target=/var/cache/apt  cat '/app/dep/packages.txt' | envsubst | xargs apt -y install
+RUN export ROS_DISTRO=${ROS_DISTRO} && (cat '/dep/packages.txt' | envsubst) > '/dep/packages1.txt'
+
+RUN apt update
+
+RUN --mount=type=cache,target=/var/cache/apt  cat '/dep/packages1.txt' | xargs apt -y install
 
 RUN apt install python3-colcon-common-extensions python3-rosdep python3-pip -y
 
