@@ -1,0 +1,3 @@
+[submodule "sample_package"]
+    path = 'workspace/src/sample_package'
+    url = 'https://github.com/KoNaR-Becard/ROS2_Sample_Package'
