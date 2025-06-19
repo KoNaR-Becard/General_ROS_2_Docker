@@ -5,6 +5,9 @@ FROM althack/ros2:humble-base
 
 ENV DEBIAN_FRONTEND noninteractive
 
+ENV BUILD_LOCATION ./build
+ENV INSTALL_LOCATION ./install
+
 # Install dependencies
 
 COPY ./dependencies /dep
@@ -41,15 +44,15 @@ RUN find /app -name "dependencies.txt" -exec pip3 install -r {} \;
 
 # Compile all packages
 
-RUN colcon build  --build-base $BUILD_LOCATION --install-base $INSTALL_LOCATION
+RUN colcon build  --build-base ${BUILD_LOCATION} --install-base ${INSTALL_LOCATION}
+
+RUN apt install -y tini
 
 # Copy entrypoint
 
 COPY ./entrypoints/entrypoint.prod.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
-
-RUN apt install -y tini
 
 ENTRYPOINT ["/usr/bin/tini", "--"]
 

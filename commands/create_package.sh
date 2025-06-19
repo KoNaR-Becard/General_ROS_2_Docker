@@ -2,7 +2,7 @@
 
 source /opt/ros/${ROS_DISTRO}/setup.bash
 
-cd /app/src/workspace
+cd /app
 
 mkdir src
 

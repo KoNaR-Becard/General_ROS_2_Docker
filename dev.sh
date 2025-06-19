@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# Run those to configure nvidia runtime:
-# sudo nvidia-ctk runtime configure --runtime=docker
-# sudo systemctl restart docker
-# sudo nvidia-ctk runtime configure --runtime=containerd
-# sudo systemctl restart containerd
-
 clear
 
 arg=$1
@@ -25,8 +19,8 @@ docker compose -f compose_sim.yml stop -t 3600
 
 elif [ "$arg" = "clean" ]; then
 
-rm -R robot/src/workspace/sim_build
-rm -R robot/src/workspace/sim_install
+rm -R workspace/build
+rm -R workspace/install
 
 elif [ "$arg" = "compile" ]; then
 
