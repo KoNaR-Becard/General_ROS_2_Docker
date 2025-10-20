@@ -1,11 +1,35 @@
 FROM althack/ros2:humble-dev
 
-
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt update
 
-RUN apt install -y tini
+RUN apt install -y git tini
+
+RUN mkdir /app
+
+WORKDIR /app
+
+RUN git clone -b v2.4.3 https://github.com/eProsima/Micro-XRCE-DDS-Agent.git
+
+WORKDIR /app/Micro-XRCE-DDS-Agent
+
+RUN mkdir build
+
+WORKDIR /app/Micro-XRCE-DDS-Agent/build
+
+RUN cmake ..
+
+RUN make
+
+RUN make install
+
+RUN ldconfig /usr/local/lib
+
+WORKDIR /app
+
+RUN echo "source /opt/ros/humble/local_setup.sh" >> /root/.bashrc
+
 ENTRYPOINT ["/usr/bin/tini", "--"]
 
 CMD [ "/entrypoint.sh" ]
