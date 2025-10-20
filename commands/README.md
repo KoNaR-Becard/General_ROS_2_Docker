@@ -35,3 +35,7 @@ It is a wrapper for **apt install** command.
 /cmd/run_cmd.sh \<command\>
 
 Lets you run any command in ROS 2 environment.
+
+## update contaienr packages
+
+/cmd/upgrade.sh
