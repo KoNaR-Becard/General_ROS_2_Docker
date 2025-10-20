@@ -1,3 +1,9 @@
 [submodule "workspace/src/sample_package"]
     path = workspace/src/sample_package
     url = git@github.com:KoNaR-Becard/ROS2_Sample_Package.git
+[submodule "px4_ros_com"]
+    path = workspace/src/px4_ros_com
+    url = git@github.com:PX4/px4_ros_com.git
+[submodule "px4_msgs"]
+    path = workspace/src/px4_msgs
+    url = git@github.com:PX4/px4_msgs.git
