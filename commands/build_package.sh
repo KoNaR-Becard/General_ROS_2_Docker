@@ -6,4 +6,4 @@ cd /app
 
 rosdep install --from-paths /app --ignore-src -r -y -q
 
-colcon build --symlink-install --build-base $BUILD_LOCATION --install-base $INSTALL_LOCATION --packages-select $1
+colcon build --symlink-install --packages-select $1
