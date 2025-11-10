@@ -19,7 +19,7 @@ def generate_launch_description():
     
     publisher = Node(
         package = pkg_name,
-        executable = 'hello.py',
+        executable = 'hi.py',
         output = 'screen',
         namespace = ''
     )
