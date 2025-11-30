@@ -6,7 +6,7 @@ services:
   gazebo:
     container_name: becard_dev
     network_mode: host
-    image: becard_dev_ros
+    image: ghcr.io/konar-becard/general_ros_2_docker:master
 
     privileged: true
     tty: true
