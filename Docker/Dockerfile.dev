@@ -40,7 +40,9 @@ RUN ldconfig /usr/local/lib
 
 WORKDIR /app
 
-RUN echo "source /opt/ros/humble/local_setup.sh" >> /root/.bashrc
+RUN echo "source /opt/ros/humble/setup.bash" >> /root/.bashrc
+
+RUN echo 'export PATH="$PATH:/cmd"' >> /root/.bashrc
 
 ENTRYPOINT ["/usr/bin/tini", "--"]
 
