@@ -1,3 +1,5 @@
+set -e
+
 echo "Hello Prod"
 
 MicroXRCEAgent udp4 -p 8888 &
