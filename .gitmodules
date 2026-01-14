@@ -7,3 +7,6 @@
 [submodule "workspace/src/px4_msgs"]
     path = workspace/src/px4_msgs
     url = git@github.com:PX4/px4_msgs.git
+[submodule "workspace/src/Gps_Bridge"]
+    path = workspace/src/Gps_Bridge
+    url = git@github.com:KoNaR-Becard/Gps_Bridge.git
