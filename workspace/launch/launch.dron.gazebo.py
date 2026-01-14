@@ -29,9 +29,17 @@ def generate_launch_description():
         ],
         output='screen',
     )
+    
+    gps_bridge = Node(
+        package='gps_bridge',
+        executable='gps_bridge_node',
+         arguments=[],
+        output='screen'
+    )
 
     # Run the node
     return LaunchDescription([
-        gz_bridge
+        gz_bridge,
+        gps_bridge
     ])
 
