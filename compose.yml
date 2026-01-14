@@ -1,6 +1,3 @@
-version: '3.9'
-
-
 services:
   robot:
     container_name: beacard_prod
@@ -27,4 +24,3 @@ services:
 
     group_add:
       - dialout
-      - 1001
