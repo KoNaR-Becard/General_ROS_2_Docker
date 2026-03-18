@@ -46,3 +46,6 @@
   ros_type_name: tf2_msgs/msg/TFMessage
   gz_type_name: gz.msgs.Pose_V
   direction: GZ_TO_ROS
+  publisher_qos:
+    durability: transient_local
+    reliability: reliable

@@ -27,6 +27,9 @@ def generate_launch_description():
             '-p',
             f'config_file:={bridge_params}',
         ],
+        parameters=[{
+                'qos_overrides./tf_static.publisher.durability': 'transient_local',
+            }],
         output='screen',
     )
     
