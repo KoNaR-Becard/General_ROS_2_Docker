@@ -33,13 +33,14 @@ def generate_launch_description():
     gps_bridge = Node(
         package='gps_bridge',
         executable='gps_bridge_node',
-         arguments=[],
+        arguments=[],
+        parameters=[{'use_sim_time': True}],
         output='screen'
     )
 
     # Run the node
     return LaunchDescription([
         gz_bridge,
-        gps_bridge
+        gps_bridge,
     ])
 
