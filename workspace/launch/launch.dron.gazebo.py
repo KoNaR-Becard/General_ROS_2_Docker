@@ -40,19 +40,10 @@ def generate_launch_description():
         parameters=[{'use_sim_time': True}],
         output='screen'
     )
-    
-    dron_controller = Node(
-        package='drone_controller',
-        executable='drone_controller',
-        arguments=[],
-        parameters=[{'use_sim_time': True}],
-        output='screen'
-    )
 
     # Run the node
     return LaunchDescription([
         gz_bridge,
-        # gps_bridge,
-        # dron_controller
+        gps_bridge,
     ])
 
