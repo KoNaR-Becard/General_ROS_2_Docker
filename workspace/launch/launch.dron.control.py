@@ -51,8 +51,8 @@ def generate_launch_description():
 
     # Run the node
     return LaunchDescription([
-        gz_bridge,
+        # gz_bridge,
         # gps_bridge,
-        # dron_controller
+        dron_controller
     ])
 

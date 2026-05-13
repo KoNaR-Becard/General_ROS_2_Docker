@@ -10,3 +10,6 @@
 [submodule "workspace/src/Gps_Bridge"]
     path = workspace/src/Gps_Bridge
     url = git@github.com:KoNaR-Becard/Gps_Bridge.git
+[submodule "workspace/src/Drone_Control_Node"]
+    path = workspace/src/Drone_Control_Node
+    url = git@github.com:KoNaR-Becard/Drone_Control_Node.git
