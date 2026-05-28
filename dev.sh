@@ -4,6 +4,7 @@ clear
 
 arg=$1
 
+xhost local:docker
 
 if [ "$arg" = "start" ]; then
 
