@@ -40,6 +40,15 @@ RUN ldconfig /usr/local/lib
 
 WORKDIR /app
 
+RUN pip install uv
+RUN apt install binfmt-support -y
+
+COPY utils/py-extension /usr/share/binfmts/py-extension
+
+COPY utils/uv-runner /bin/uv-runner
+RUN chmod +x /bin/uv-runner
+RUN update-binfmts --import py-extension
+
 RUN echo "source /opt/ros/humble/setup.bash" >> /root/.bashrc
 
 RUN echo 'export PATH="$PATH:/cmd"' >> /root/.bashrc
