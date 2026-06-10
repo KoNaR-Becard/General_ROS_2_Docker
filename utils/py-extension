@@ -1,0 +1,3 @@
+package binfmt-support
+interpreter /bin/uv-runner
+extension py
